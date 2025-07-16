@@ -30,3 +30,21 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network&subnet name"
 }
+
+variable "storage_resources" {
+  type = map(number)
+  default = {
+      cores = 2
+      memory = 1
+      core_fraction = 5
+  }
+}
+
+
+variable "metadata" {
+  type = map(any)
+  default = {
+    "serial-port-enable" = 1
+    "ssh-keys"           = local.ssh_keys
+  }
+}

@@ -23,9 +23,7 @@ resource "yandex_compute_instance" "example" {
     }
   }
 
-  metadata = {
-    ssh-keys = local.ssh_keys
-  }
+  metadata = var.metadata
 
   scheduling_policy { preemptible = true }
 
