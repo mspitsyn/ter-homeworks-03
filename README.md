@@ -51,5 +51,24 @@ resource "yandex_compute_instance" "storage" {
 ```  
 
 ## Решение задания 4  
+4.1 Создал файл `ansible.tf`  
 
+```yaml
+resource "local_file" "hosts_cfg" {
+    
+    filename = "${abspath(path.module)}/hosts.cfg"
+    content = templatefile(
+        "${path.module}/hosts.tftpl",
+      {
+        webservers = yandex_compute_instance.example
+        databases = yandex_compute_instance.for_each
+        storage = [ yandex_compute_instance.storage ]
+      }
+    )
+}
+```
+
+4.2 После выполнения кода:  
+  ![task-4](screenshots/task-4.png)  
+  ![task-4-1](screenshots/task-4-1.png) 
 

@@ -7,6 +7,7 @@ resource "yandex_compute_disk" "vm_disks" {
 
 resource "yandex_compute_instance" "storage" {
   name = "storage"
+  hostname = "storage"
   resources {
     cores = var.storage_resources.cores
     memory = var.storage_resources.memory
@@ -15,7 +16,7 @@ resource "yandex_compute_instance" "storage" {
 
   boot_disk {
     initialize_params {
-    image_id = data.yandex_compute_image.ubuntu.image_id
+    image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
     }
   }
 
